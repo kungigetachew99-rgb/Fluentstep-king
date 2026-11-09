@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0e1424"><title>FluentStep Pro</title>
+<link rel="manifest" href="manifest.json"><link rel="icon" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>
+:root{--bg:#0e1424;--card:#161e33;--in:#0b101d;--tx:#f2f4fb;--mu:#98a2bd;--ac:#8f93ff;--ac2:#252b52;--ok:#1aa37a;--bd:#2a3350}
+body.light{--bg:#f2f5fb;--card:#fff;--in:#f7f9fd;--tx:#14192b;--mu:#5d667f;--ac:#4a4fe0;--ac2:#e4e6ff;--bd:#dfe4f0}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.45 Roboto,system-ui,sans-serif;padding-bottom:96px}
+header{display:flex;align-items:center;gap:12px;padding:14px 16px;padding-top:max(14px,env(safe-area-inset-top))}
+.logo{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#5b61e8,#9a6be0);display:grid;place-items:center;font-weight:800;font-size:24px;color:#fff}
+header h1{margin:0;font-size:22px}header h1 b{color:var(--ac)}header small{color:var(--mu)}header div.g{flex:1}
+.ib{width:42px;height:42px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font-size:18px}
+main{padding:0 16px}.hero{background:linear-gradient(135deg,#3f46a8,#7a73d8);border-radius:24px;padding:18px;display:flex;justify-content:space-between;gap:8px;color:#fff;margin-bottom:16px}
+.hero .t{font-size:30px;font-weight:700;letter-spacing:1px}.hero small{opacity:.85}
+h2{display:flex;justify-content:space-between;align-items:center;font-size:26px;margin:18px 0 12px}
+.pill{font-size:13px;font-weight:400;background:var(--ac2);color:var(--ac);padding:6px 12px;border-radius:99px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:22px;padding:16px;margin-bottom:14px}.card h3{margin:0 0 8px;font-size:19px}
+.mu{color:var(--mu)}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row>*{flex:0 0 auto}.sp{justify-content:space-between}
+.stat{background:var(--in);border-radius:16px;padding:12px;flex:1;min-width:90px}.stat b{font-size:26px;display:block}.stat span{color:var(--mu);font-size:13px}
+.bar{height:12px;border-radius:9px;background:var(--bd);overflow:hidden;margin:10px 0}.bar i{display:block;height:100%;background:var(--ac);border-radius:9px}
+input,textarea,select{width:100%;background:var(--in);color:var(--tx);border:1px solid var(--bd);border-radius:14px;padding:13px;font:inherit;margin:4px 0 10px}
+label{font-size:14px;font-weight:600;color:var(--mu)}
+button{font:inherit;cursor:pointer}.b{background:var(--ac2);color:var(--ac);border:0;border-radius:14px;padding:10px 16px}
+.bp{background:var(--ac);color:#10132a;border:0;border-radius:14px;padding:12px 20px;font-weight:600}.bo{background:none;color:var(--tx);border:1px solid var(--bd);border-radius:14px;padding:10px 16px}.bd{color:#ff8a8a}
+.sub{display:flex;gap:8px;margin-bottom:14px;overflow:auto}.sub button{border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:99px;padding:10px 18px;white-space:nowrap}.sub .on{background:var(--ac);color:#10132a;border-color:var(--ac)}
+.task{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--bd);align-items:center}.task:last-child{border:0}.dot{width:14px;height:14px;border-radius:50%;background:var(--ac);flex:none}.done .dot{background:var(--ok)}.done .nm{text-decoration:line-through;color:var(--mu)}
+.task .nm{font-weight:700;font-size:17px}.task>div{flex:1}.item{border-bottom:1px solid var(--bd);padding:12px 0}.item:last-child{border:0}
+.opt{display:block;width:100%;text-align:left;background:var(--in);color:var(--tx);border:1px solid var(--bd);border-radius:14px;padding:13px;margin:6px 0}.opt.ok{border-color:var(--ok);background:#12382f;color:#fff}.opt.no{border-color:#e05d5d;background:#3d1c24;color:#fff}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;overflow-x:auto;background:var(--bg);border-top:1px solid var(--bd);padding:8px 8px max(10px,env(safe-area-inset-bottom));gap:4px;z-index:5}
+nav button{flex:0 0 auto;min-width:78px;background:none;border:0;color:var(--mu);border-radius:18px;padding:8px 10px;font-size:13px}nav button span{display:block;font-size:24px}nav .on{background:var(--ac2);color:var(--ac);font-weight:700}
+#toast{position:fixed;left:16px;right:16px;bottom:110px;background:var(--ac);color:#10132a;padding:14px;border-radius:16px;font-weight:600;display:none;z-index:9;text-align:center}
+.chart{display:flex;align-items:flex-end;gap:8px;height:110px}.chart div{flex:1;text-align:center;font-size:11px;color:var(--mu)}.chart i{display:block;background:var(--ac);border-radius:6px 6px 0 0;min-height:3px;margin-bottom:4px}
+.big{font-size:22px;font-weight:700;line-height:1.3}
+</style></head><body>
+<header><div class="logo">F</div><div class="g"><h1>FluentStep <b>Pro</b></h1><small>Small steps. Real progress.</small></div>
+<button class="ib" onclick="if(dp){dp.prompt()}else{exportJSON()}" title="Install / Backup">⬇</button><button class="ib" onclick="theme()">◐</button></header>
+<main id="m"></main><div id="toast"></div>
+<nav id="nav"></nav>
+<script>
+const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const pad=n=>String(n).padStart(2,'0'),dk=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()),today=()=>dk(new Date());
+const TARGET=1825,START_DEFAULT=today();
+const CATS=['Daily life','Work','Academic','Travel','Emotions','Technology','Bible','Other'];
+const SCHED=[
+{id:'bible',n:'Wake up & Bible study',s:300,e:330,d:'Wake up at 5:00 AM • Bible study 5:00–5:30 AM',go:'bible'},
+{id:'speak',n:'English conversation with ChatGPT',s:330,e:390,d:'Speaking practice 5:30–6:30 AM',go:'speak'},
+{id:'listen',n:'Listen to an English podcast',s:420,e:480,d:'Listening practice 7:00–8:00 AM',go:'speak'},
+{id:'vocab',n:'Vocabulary & writing practice',s:660,e:780,d:'Learn five words and practise writing 11:00 AM–1:00 PM',go:'words'},
+{id:'code',n:'Coding',s:1140,e:1230,d:'Python, JavaScript, HTML/CSS 7:00–8:30 PM',go:'code'},
+{id:'uni',n:'Study university subjects',s:1230,e:1440,d:'Class subjects 8:30 PM–12:00 midnight',go:'schedule'}];
+const GRAM=[
+['Present simple','Use it for habits and facts: "She studies every day." Add -s/-es for he/she/it.','Choose the correct sentence.',['He go to work.','He goes to work.','He going to work.'],1],
+['Present continuous','Use am/is/are + verb-ing for actions happening now.','"I ___ English right now."',['study','am studying','studied'],1],
+['Past simple','Finished actions: add -ed or use irregular forms (go → went).','"Yesterday I ___ a new word."',['learn','learned','learning'],1],
+['Present perfect','have/has + past participle: experience or results now.','"I ___ never visited Rome."',['have','has','am'],0],
+['Articles','a/an for singular general nouns; the for specific ones. Use an before vowel sounds.','"She is ___ engineer."',['a','an','the'],1],
+['Prepositions of time','at + clock time, on + days, in + months/years.','"The class starts ___ Monday."',['at','on','in'],1],
+['Conditionals','If + present, will + verb for real future possibilities.','"If it rains, we ___ at home."',['stay','will stay','stayed'],1],
+['Comparatives','Short adjectives add -er; long ones use more.','"This book is ___ than that one."',['more interesting','interestinger','most interesting'],0]];
+const CODE={'Python':['🐍','Variables, conditions, loops, functions and small projects.',['Variables','Conditions','Loops','Functions','Small project']],
+'HTML & CSS':['🌐','Structure, styling, responsive layouts and web pages.',['HTML structure','CSS basics','Flexbox','Grid','Responsive page']],
+'JavaScript':['⚡','Variables, functions, DOM, events and app logic.',['Variables','Functions','DOM','Events','App logic']]};
+const PROMPTS=['Describe your perfect morning.','Write about a goal you are working on.','Explain a new thing you learned this week.','Write a letter to your future self.','Describe a person who inspires you.','Write about a challenge you overcame.'];
+const TIPS=['Consistency is more important than intensity.','One new word used today beats ten forgotten tomorrow.','Speak first, polish later.','Small steps, every day.'];
+let S,tab='home',wsub='add',editId=null,quiz=null,filt={q:'',cat:'',mon:''},rec=null,qDay=null;
+function load(){try{S=JSON.parse(localStorage.getItem('fsp')||'null')}catch(e){S=null}
+S=Object.assign({start:today(),words:[],done:{},writing:[],practice:[],code:{},projects:[],reflections:[],verses:[],gram:{},quiz:{},rem:false,light:false,recs:[]},S||{})}
+function save(){try{localStorage.setItem('fsp',JSON.stringify(S))}catch(e){toast('Storage full. Export a backup.')}}
+function toast(t){const e=$('toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',2600)}
+function theme(){S.light=!S.light;document.body.classList.toggle('light',S.light);save()}
+const NAV=[['home','🏠','Home'],['words','📚','Words'],['grammar','✍️','Grammar'],['speak','🎙️','Speak'],['write','📝','Write'],['schedule','🗓️','Schedule'],['code','💻','Code'],['bible','📖','Bible'],['progress','📈','Progress']];
+function go(t){tab=t;$('nav').innerHTML=NAV.map(n=>`<button class="${n[0]==t?'on':''}" onclick="go('${n[0]}')"><span>${n[1]}</span>${n[2]}</button>`).join('');
+const v={home,words,grammar,speak,write,schedule,code,bible,progress}[t]();$('m').innerHTML=(t=='home'?'':clockHero())+v;scrollTo(0,0);tick();
+if(t=='words'&&editId)setTimeout(()=>$('w_word')?.scrollIntoView(),50)}
+function clockHero(){return `<div class="hero"><div><small id="dt"></small><div class="t" id="ck"></div><small>Your local time</small></div><div style="text-align:right"><small>NEXT ACTIVITY</small><div class="t" id="cd" style="font-size:26px"></div><small id="na"></small></div></div>`}
+const isDone=id=>(S.done[today()]||{})[id];
+function streak(){let n=0,d=new Date();if(!Object.keys(S.done[dk(d)]||{}).length)d.setDate(d.getDate()-1);
+while(Object.keys(S.done[dk(d)]||{}).length){n++;d.setDate(d.getDate()-1)}return n}
+function toggle(id,from){const t=S.done[today()]=S.done[today()]||{};if(t[id])delete t[id];else t[id]=1;save();go(from)}
+function taskRows(){return SCHED.map(t=>`<div class="task ${isDone(t.id)?'done':''}"><span class="dot"></span><div><div class="nm">${t.n}</div><div class="mu">${fmt(t.s)} – ${fmt(t.e)} · ${t.d}</div></div>
+${isDone(t.id)?`<button class="b" onclick="toggle('${t.id}',tab)">Done ✓</button>`:`<button class="b" onclick="go('${t.go}')">Start</button><button class="b" onclick="toggle('${t.id}',tab)">✓</button>`}</div>`).join('')}
+function fmt(m){m%=1440;const h=Math.floor(m/60),mi=m%60;return (h%12||12)+':'+pad(mi)+' '+(h<12?'AM':'PM')}
+function wordsOn(d){return S.words.filter(w=>w.date==d).length}
+function home(){const dn=Object.keys(S.done[today()]||{}).length,p=Math.round(dn/6*100),dy=new Date().toLocaleDateString('en-GB',{weekday:'long'}).toUpperCase();
+return clockHero()+`<h2>Dashboard<span class="pill">${dy}</span></h2>
+<div class="card"><h3>Today's progress</h3><div class="row"><div class="stat"><b>${dn}/6</b><span>Tasks done</span></div><div class="stat"><b>${p}%</b><span>Daily progress</span></div><div class="stat"><b>${streak()} 🔥</b><span>Day streak</span></div></div>
+<div class="bar"><i style="width:${p}%"></i></div><div class="mu">${p==100?'All done today. Well done!':'You are making progress. Keep going.'}</div></div>
+<div class="card"><h3>Daily focus</h3><div class="big">“${TIPS[new Date().getDate()%TIPS.length]}”</div><p class="mu">Keep showing up, one task at a time.</p></div>
+<div class="card"><div class="row sp"><h3>Today's tasks</h3><button class="b" onclick="go('schedule')">Full schedule →</button></div>${taskRows()}</div>
+<div class="card"><h3>Quick actions</h3><div class="row"><button class="bp" onclick="wsub='add';go('words')">+ Add a word</button><button class="bo" onclick="go('speak')">🎙 Record voice</button></div>
+${S.rem?'<p class="mu">🔔 Reminders are on.</p>':'<p class="mu">🔔 Turn on reminders and allow notifications so FluentStep can alert you.</p><button class="b" style="width:100%" onclick="enableRem()">Enable notifications</button>'}</div>`}
+function enableRem(){S.rem=true;save();try{Notification.requestPermission()}catch(e){}toast('Reminders on. Keep this page open for alarms.');go(tab)}
+function schedule(){return `<h2>Daily Schedule<span class="pill">6 activities</span></h2><div class="card">${taskRows()}</div>
+<div class="card"><h3>Reminders</h3><p class="mu">An alert and sound play at the start of each activity while the app is open.</p><button class="b" onclick="${S.rem?`S.rem=false;save();go('schedule')`:'enableRem()'}">${S.rem?'Turn reminders off':'Enable notifications'}</button></div>`}
+/* WORDS */
+function words(){const sb=['add','list','rev'],nm=['+ Add words','Word list','Revision'];
+const days=Math.max(0,365-Math.floor((Date.now()-new Date(S.start+'T00:00'))/864e5)),end=new Date(S.start+'T00:00');end.setFullYear(end.getFullYear()+1);
+const head=`<h2>Vocabulary builder<span class="pill">${S.words.length} words</span></h2><div class="card"><div class="row sp"><h3>📖 My Personal English Dictionary</h3><span class="pill">365-day journey</span></div>
+<p class="mu">Every word you save is dated and kept in your personal list. Annual target: ${TARGET} words (5 a day).</p>
+<div class="row"><div class="stat"><b>${S.words.length}</b><span>Words collected</span></div><div class="stat"><b>${days}</b><span>Days remaining</span></div></div>
+<div class="bar"><i style="width:${Math.min(100,S.words.length/TARGET*100)}%"></i></div><div class="row sp mu"><span>Started: ${S.start}</span><span>Ends: ${dk(end)}</span></div>
+<div class="row" style="margin-top:12px"><button class="b" onclick="exportJSON()">Export backup</button><button class="b" onclick="$('rf').click()">Restore backup</button><button class="b" onclick="exportCSV()">Export CSV</button></div>
+<input type="file" id="rf" accept=".json" hidden onchange="restore(this)"></div>
+<div class="sub">${sb.map((s,i)=>`<button class="${wsub==s?'on':''}" onclick="wsub='${s}';quiz=null;go('words')">${nm[i]}</button>`).join('')}</div>`;
+return head+(wsub=='add'?wForm():wsub=='list'?wList():wRev())}
+function wForm(){const w=S.words.find(x=>x.id==editId)||{};
+return `<div class="card"><h3>${w.id?'Edit word':'Add a useful word'}</h3><p class="mu">Save new vocabulary with its meaning and an example.</p>
+<label>English word</label><input id="w_word" placeholder="e.g. perseverance" value="${esc(w.word)}">
+<label>Meaning (your own language or English)</label><input id="w_mean" placeholder="Meaning of the word" value="${esc(w.meaning)}">
+<label>Example sentence</label><textarea id="w_ex" rows="3" placeholder="Perseverance helps me reach my goals.">${esc(w.example)}</textarea>
+<label>Synonyms (optional)</label><input id="w_syn" placeholder="e.g. determination, persistence" value="${esc(w.syn)}">
+<label>Antonyms (optional)</label><input id="w_ant" placeholder="e.g. surrender, weakness" value="${esc(w.ant)}">
+<label>Category</label><select id="w_cat">${CATS.map(c=>`<option ${w.cat==c?'selected':''}>${c}</option>`).join('')}</select>
+<button class="bp" style="width:100%" onclick="saveWord()">${w.id?'Update word':'Save word'}</button>${w.id?'<button class="bo" style="width:100%;margin-top:8px" onclick="editId=null;go(\'words\')">Cancel</button>':''}</div>
+<p class="mu">Today: ${wordsOn(today())} of 5 words added.</p>`}
+function saveWord(){const word=$('w_word').value.trim(),meaning=$('w_mean').value.trim();if(!word||!meaning)return toast('Enter the word and its meaning.');
+const o={word,meaning,example:$('w_ex').value.trim(),syn:$('w_syn').value.trim(),ant:$('w_ant').value.trim(),cat:$('w_cat').value};
+if(editId){Object.assign(S.words.find(x=>x.id==editId),o);editId=null;toast('Word updated.')}
+else{if(S.words.some(x=>x.word.toLowerCase()==word.toLowerCase()))return toast('That word is already saved.');S.words.unshift({id:Date.now(),date:today(),...o});toast('Word saved.')}
+save();go('words')}
+function wList(){const f=filt,l=S.words.filter(w=>(!f.q||(w.word+' '+w.meaning).toLowerCase().includes(f.q.toLowerCase()))&&(!f.cat||w.cat==f.cat)&&(!f.mon||w.date.startsWith(f.mon)));
+let h=`<div class="card"><input id="fq" placeholder="Search by word or meaning" value="${esc(f.q)}" oninput="filt.q=this.value;lst()"><div class="row"><select id="fc" style="flex:1" onchange="filt.cat=this.value;lst()"><option value="">All categories</option>${CATS.map(c=>`<option ${f.cat==c?'selected':''}>${c}</option>`).join('')}</select><input type="month" id="fm" style="flex:1" value="${f.mon}" onchange="filt.mon=this.value;lst()"></div></div><div id="wl">${wRows(l)}</div>`;return h}
+function lst(){const f=filt;$('wl').innerHTML=wRows(S.words.filter(w=>(!f.q||(w.word+' '+w.meaning).toLowerCase().includes(f.q.toLowerCase()))&&(!f.cat||w.cat==f.cat)&&(!f.mon||w.date.startsWith(f.mon))))}
+function wRows(l){if(!l.length)return '<div class="card mu">No words yet. Add your first word.</div>';const g={};l.forEach(w=>(g[w.date]=g[w.date]||[]).push(w));
+return Object.keys(g).sort().reverse().map(d=>`<div class="card"><h3>${d} <span class="pill">${g[d].length}</span></h3>${g[d].map(w=>`<div class="item"><div class="row sp"><b style="font-size:18px">${esc(w.word)}</b><span class="pill">${esc(w.cat)}</span></div><div>${esc(w.meaning)}</div>${w.example?`<div class="mu">“${esc(w.example)}”</div>`:''}${w.syn?`<div class="mu">Synonyms: ${esc(w.syn)}</div>`:''}${w.ant?`<div class="mu">Antonyms: ${esc(w.ant)}</div>`:''}
+<div class="row" style="margin-top:8px"><button class="b" onclick="say('${esc(w.word).replace(/'/g,'')}')">🔊</button><button class="b" onclick="editId=${w.id};wsub='add';go('words')">Edit</button><button class="b bd" onclick="delWord(${w.id})">Delete</button></div></div>`).join('')}</div>`).join('')}
+function delWord(id){if(confirm('Delete this word?')){S.words=S.words.filter(w=>w.id!=id);save();go('words')}}
+function say(t){try{const u=new SpeechSynthesisUtterance(t);u.lang='en-US';speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){toast('Speech is not supported here.')}}
+function wRev(){const q=S.quiz[today()]||{r:0,t:0};if(S.words.length<4)return '<div class="card mu">Add at least 4 words to start the revision quiz.</div>';
+if(!quiz){const w=S.words[Math.random()*S.words.length|0],o=[w];while(o.length<4){const x=S.words[Math.random()*S.words.length|0];if(!o.includes(x))o.push(x)}quiz={w,o:o.sort(()=>Math.random()-.5),a:false}}
+return `<div class="card"><div class="row sp"><h3>Revision quiz</h3><span class="pill">Today ${q.r}/${q.t}</span></div><p class="mu">Which word matches this meaning?</p><div class="big">${esc(quiz.w.meaning)}</div>
+${quiz.o.map((o,i)=>`<button class="opt ${quiz.a?(o.id==quiz.w.id?'ok':quiz.pick==o.id?'no':''):''}" onclick="ans(${o.id})">${esc(o.word)}</button>`).join('')}
+${quiz.a?`<p>${quiz.w.example?'“'+esc(quiz.w.example)+'”':''}</p><button class="bp" onclick="quiz=null;go('words')">Next question</button>`:''}</div>`}
+function ans(id){if(quiz.a)return;quiz.a=true;quiz.pick=id;const q=S.quiz[today()]=S.quiz[today()]||{r:0,t:0};q.t++;if(id==quiz.w.id)q.r++;save();go('words')}
+/* GRAMMAR */
+function grammar(){const n=Object.keys(S.gram).length;return `<h2>Grammar<span class="pill">${n}/${GRAM.length} lessons</span></h2>`+GRAM.map((g,i)=>`<div class="card"><h3>${S.gram[g[0]]?'✅ ':''}${g[0]}</h3><p class="mu">${g[1]}</p><b>${g[2]}</b>
+${g[3].map((o,j)=>`<button class="opt" onclick="gAns(this,${i},${j})">${o}</button>`).join('')}</div>`).join('')}
+function gAns(b,i,j){const g=GRAM[i],bs=b.parentNode.querySelectorAll('.opt');bs.forEach((x,k)=>{x.disabled=true;if(k==g[4])x.classList.add('ok')});if(j==g[4]){S.gram[g[0]]=1;save();toast('Correct!')}else{b.classList.add('no');toast('Not quite. Review the rule.')}}
+/* SPEAK */
+function speak(){const tot=S.practice.filter(p=>p.date==today()).reduce((a,p)=>a+p.min,0);
+return `<h2>Speak & Listen<span class="pill">${tot} min today</span></h2>
+<div class="card"><h3>Pronunciation recorder</h3><p class="mu">Record yourself, then play it back and compare with the word read aloud.</p><div class="row"><button class="bp" id="rb" onclick="recToggle()">● Record</button><button class="b" onclick="say(prompt('Word or sentence to hear:')||'')">🔊 Hear a word</button></div><div id="rl">${recList()}</div></div>
+<div class="card"><h3>English practice tracker</h3><select id="pt"><option>Conversation</option><option>Podcast listening</option><option>Reading</option><option>Shadowing</option></select><input id="pm" type="number" min="1" placeholder="Minutes" value="30"><input id="pn" placeholder="Notes (topic, new phrases)"><button class="bp" onclick="logP()">Save practice</button>
+${S.practice.slice(-6).reverse().map(p=>`<div class="item">${p.date} · <b>${p.type}</b> · ${p.min} min<div class="mu">${esc(p.note)}</div></div>`).join('')}</div>`}
+function logP(){const m=+$('pm').value;if(!m)return toast('Enter minutes.');S.practice.push({date:today(),type:$('pt').value,min:m,note:$('pn').value});save();toast('Practice saved.');go('speak')}
+function recList(){return S.recs.map((r,i)=>`<div class="item"><div class="mu">${r.date} ${r.time}</div><audio controls src="${r.url}" style="width:100%"></audio><button class="b bd" onclick="S.recs.splice(${i},1);save();go('speak')">Delete</button></div>`).join('')}
+async function recToggle(){if(rec){rec.stop();return}try{const st=await navigator.mediaDevices.getUserMedia({audio:true}),ch=[];rec=new MediaRecorder(st);rec.ondataavailable=e=>ch.push(e.data);
+rec.onstop=()=>{st.getTracks().forEach(t=>t.stop());const r=new FileReader();r.onload=()=>{S.recs.unshift({date:today(),time:new Date().toLocaleTimeString(),url:r.result});S.recs=S.recs.slice(0,5);rec=null;save();go('speak')};r.readAsDataURL(new Blob(ch))};
+rec.start();$('rb').textContent='■ Stop'}catch(e){rec=null;toast('Microphone permission is needed.')}}
+/* WRITE */
+function write(){const p=PROMPTS[new Date().getDate()%PROMPTS.length];return `<h2>Writing journal<span class="pill">${S.writing.length} entries</span></h2><div class="card"><h3>Today's prompt</h3><p class="mu">${p}</p>
+<input id="wt" placeholder="Title (optional)"><textarea id="wx" rows="8" placeholder="Start writing in English…" oninput="$('wc').textContent=this.value.trim().split(/\\s+/).filter(Boolean).length+' words'"></textarea><div class="row sp"><span class="mu" id="wc">0 words</span><button class="bp" onclick="saveW('${p}')">Save entry</button></div></div>
+${S.writing.map(w=>`<div class="card"><div class="row sp"><b>${esc(w.title||w.prompt)}</b><span class="pill">${w.date} · ${w.n}w</span></div><p style="white-space:pre-wrap">${esc(w.text)}</p><button class="b bd" onclick="delW(${w.id})">Delete</button></div>`).join('')}`}
+function saveW(p){const t=$('wx').value.trim();if(!t)return toast('Write something first.');S.writing.unshift({id:Date.now(),date:today(),title:$('wt').value,prompt:p,text:t,n:t.split(/\s+/).length});save();toast('Entry saved.');go('write')}
+function delW(id){if(confirm('Delete entry?')){S.writing=S.writing.filter(w=>w.id!=id);save();go('write')}}
+/* CODE */
+function code(){return `<h2>Coding Academy<span class="pill">Build every day</span></h2>`+Object.entries(CODE).map(([k,[ic,d,m]])=>{const n=S.code[k]||0;return `<div class="card"><h3>${ic} ${k}</h3><p>${d}</p><div class="bar"><i style="width:${n/m.length*100}%"></i></div>
+<p class="mu">${n}/${m.length} ${n<m.length?'· Next: '+m[n]:'· All modules complete'}</p><div class="row"><button class="b" onclick="mod('${k}',1)">Mark module complete</button>${n?`<button class="bo" onclick="mod('${k}',-1)">Undo</button>`:''}</div></div>`}).join('')+
+`<div class="card"><h3>Project tracker</h3><div class="row" style="flex-wrap:nowrap"><input id="pj" placeholder="New project name" style="margin:0"><button class="bp" onclick="addPj()">Add</button></div>
+${S.projects.map((p,i)=>`<div class="item row sp"><div><b>${esc(p.n)}</b><div class="mu">${p.date}</div></div><div class="row"><button class="b" onclick="cyc(${i})">${p.s}</button><button class="b bd" onclick="S.projects.splice(${i},1);save();go('code')">✕</button></div></div>`).join('')}</div>`}
+function mod(k,d){S.code[k]=Math.max(0,Math.min(CODE[k][2].length,(S.code[k]||0)+d));save();go('code')}
+function addPj(){const n=$('pj').value.trim();if(!n)return;S.projects.unshift({n,s:'Planned',date:today()});save();go('code')}
+function cyc(i){const o=['Planned','Building','Done'];S.projects[i].s=o[(o.indexOf(S.projects[i].s)+1)%3];save();go('code')}
+/* BIBLE */
+function bible(){return `<h2>Bible Study<span class="pill">Daily reflection</span></h2><div class="card"><div style="font-size:34px">📖</div><h3>Today's reading</h3><p class="mu">Choose a passage and spend a few minutes reading and reflecting.</p>
+<input id="bp" placeholder="e.g. Psalm 23"><textarea id="br" rows="4" placeholder="What did I learn today?"></textarea><button class="bp" onclick="saveR()">Save reflection</button>
+${S.reflections.map((r,i)=>`<div class="item"><b>${esc(r.ref)}</b> <span class="mu">${r.date}</span><div>${esc(r.text)}</div><button class="b bd" onclick="S.reflections.splice(${i},1);save();go('bible')">Delete</button></div>`).join('')}</div>
+<div class="card"><h3>Verse collection</h3><textarea id="bv" rows="3" placeholder="Write a Bible verse you want to remember…"></textarea><button class="bo" onclick="saveV()">Save verse</button>
+${S.verses.map((r,i)=>`<div class="item"><div class="big" style="font-size:17px">${esc(r.text)}</div><span class="mu">${r.date}</span> <button class="b bd" onclick="S.verses.splice(${i},1);save();go('bible')">Delete</button></div>`).join('')}</div>`}
+function saveR(){const t=$('br').value.trim();if(!t&&!$('bp').value)return toast('Add a passage or reflection.');S.reflections.unshift({date:today(),ref:$('bp').value||'Reading',text:t});S.done[today()]=Object.assign(S.done[today()]||{},{bible:1});save();toast('Reflection saved.');go('bible')}
+function saveV(){const t=$('bv').value.trim();if(!t)return;S.verses.unshift({date:today(),text:t});save();go('bible')}
+/* PROGRESS */
+function progress(){const t=today(),now=new Date(),wk=[],m=t.slice(0,7),y=t.slice(0,4);
+for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);wk.push([d.toLocaleDateString('en',{weekday:'short'}),wordsOn(dk(d)),Object.keys(S.done[dk(d)]||{}).length])}
+const mx=Math.max(5,...wk.map(x=>x[1])),W=a=>S.words.filter(w=>w.date.startsWith(a)).length,wkW=wk.reduce((a,x)=>a+x[1],0),wkT=wk.reduce((a,x)=>a+x[2],0);
+const min=S.practice.reduce((a,p)=>a+p.min,0),mod=Object.values(S.code).reduce((a,b)=>a+b,0),q=Object.values(S.quiz).reduce((a,x)=>({r:a.r+x.r,t:a.t+x.t}),{r:0,t:0});
+return `<h2>Reports<span class="pill">${streak()} 🔥 streak</span></h2><div class="card"><h3>Words added, last 7 days</h3><div class="chart">${wk.map(x=>`<div><i style="height:${x[1]/mx*80}px"></i>${x[0]}<br>${x[1]}</div>`).join('')}</div></div>
+<div class="card"><h3>Vocabulary</h3><div class="row"><div class="stat"><b>${wordsOn(t)}</b><span>Today (goal 5)</span></div><div class="stat"><b>${wkW}</b><span>Last 7 days</span></div><div class="stat"><b>${W(m)}</b><span>This month</span></div><div class="stat"><b>${W(y)}</b><span>This year</span></div></div>
+<div class="bar"><i style="width:${Math.min(100,S.words.length/TARGET*100)}%"></i></div><span class="mu">${S.words.length} of ${TARGET} annual target (${(S.words.length/TARGET*100).toFixed(1)}%)</span></div>
+<div class="card"><h3>Overall</h3><div class="row"><div class="stat"><b>${wkT}</b><span>Tasks this week</span></div><div class="stat"><b>${S.writing.length}</b><span>Writing entries</span></div><div class="stat"><b>${min}</b><span>English min</span></div><div class="stat"><b>${mod}/15</b><span>Code modules</span></div><div class="stat"><b>${S.reflections.length}</b><span>Bible reflections</span></div><div class="stat"><b>${q.t?Math.round(q.r/q.t*100):0}%</b><span>Quiz accuracy</span></div><div class="stat"><b>${Object.keys(S.gram).length}/${GRAM.length}</b><span>Grammar</span></div></div></div>
+<div class="card"><h3>Backup</h3><p class="mu">Your data lives on this device. Export regularly.</p><div class="row"><button class="bp" onclick="exportJSON()">Export backup</button><button class="b" onclick="$('rf2').click()">Restore backup</button><button class="b" onclick="exportCSV()">CSV vocabulary</button></div><input type="file" id="rf2" accept=".json" hidden onchange="restore(this)">
+<button class="bo bd" style="margin-top:12px" onclick="if(confirm('Erase ALL data?')){localStorage.removeItem('fsp');load();go('home')}">Reset everything</button></div>`}
+function dl(name,txt,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type}));a.download=name;document.body.appendChild(a);a.click();a.remove();toast('Saved '+name)}
+function exportJSON(){dl('fluentstep-backup-'+today()+'.json',JSON.stringify(S),'application/json')}
+function exportCSV(){const q=v=>'"'+String(v||'').replace(/"/g,'""')+'"';dl('vocabulary-'+today()+'.csv','Date,Word,Meaning,Example,Synonyms,Antonyms,Category\n'+S.words.map(w=>[w.date,w.word,w.meaning,w.example,w.syn,w.ant,w.cat].map(q).join(',')).join('\n'),'text/csv')}
+function restore(i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!Array.isArray(d.words))throw 0;S=d;save();load();toast('Backup restored.');go(tab)}catch(e){toast('That file is not a valid backup.')}};r.readAsText(f)}
+/* CLOCK + ALARMS */
+function tick(){const n=new Date(),c=$('ck');if(!c)return;$('dt').textContent=n.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+c.textContent=n.toLocaleTimeString('en-US',{hour12:true});const sec=n.getHours()*3600+n.getMinutes()*60+n.getSeconds();let nx=SCHED.find(t=>t.s*60>sec),diff;
+if(nx)diff=nx.s*60-sec;else{nx=SCHED[0];diff=86400-sec+nx.s*60}
+$('cd').textContent=pad(diff/3600|0)+':'+pad(diff%3600/60|0)+':'+pad(diff%60);$('na').textContent=nx.n.split(' ')[0]==='Wake'?'Bible study':nx.n}
+let lastA='';setInterval(()=>{tick();const n=new Date(),m=n.getHours()*60+n.getMinutes(),k=today()+m;if(n.getSeconds()<3&&S.rem&&k!==lastA){const a=SCHED.find(t=>t.s==m);if(a){lastA=k;toast('⏰ Time for: '+a.n);try{new Notification('FluentStep',{body:a.n+' starts now'})}catch(e){}
+try{const x=new (window.AudioContext||webkitAudioContext)(),o=x.createOscillator();o.connect(x.destination);o.frequency.value=880;o.start();setTimeout(()=>o.stop(),600)}catch(e){}}}},1000);
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+let dp;addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;toast('Tap ⬇ to install FluentStep')});
+load();document.body.classList.toggle('light',S.light);go('home');
+</script></body></html>
